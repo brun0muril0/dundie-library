@@ -13,8 +13,8 @@
             <p class="mt-1 text-sm text-slate-400">{{ book.gender }}</p>
             <div class="mt-3 flex items-center justify-between">
               <p class="text-sm font-semi-bold text-blue-500">{{ book.author }}</p>
-              <div class="flex items-center space-x-1.5 rounded-lg bg-blue-500 px-4 py-1.5 text-white duration-100 hover:bg-blue-600">
-                <button class="text-sm" @click="openBookModal(book)">Saiba mais</button>
+              <div class="flex items-center space-x-1.5 rounded-lg bg-blue-500 text-white duration-100 hover:bg-blue-600">
+                <button class="text-sm  px-4 py-1.5" @click="openBookModal(book)">Saiba mais</button>
               </div>
             </div>
           </div>
@@ -31,8 +31,8 @@
             <h2 class="text-slate-700 font-bold">{{ author.name }} {{ author.surname }}</h2>
             <div class="mt-3 flex items-center justify-between">
               <p class="mt-1 text-sm text-slate-400">{{ author.country }}</p>
-              <div class="flex items-center space-x-1.5 rounded-lg bg-blue-500 px-4 py-1.5 text-white duration-100 hover:bg-blue-600">
-                  <button class="text-sm" @click="openAuthorModal(author)">Saiba mais</button>
+              <div class="flex items-center space-x-1.5 rounded-lg bg-blue-500 text-white duration-100 hover:bg-blue-600">
+                  <button class="text-sm px-4 py-1.5" @click="openAuthorModal(author)">Saiba mais</button>
                 </div>
             </div>
           </div>
