@@ -16,6 +16,7 @@ import listBooksRegisteredPage from './components/books/listBooksRegisteredPage.
 
 /* Importação de componentes da tela de atores*/
 import registerAuthorsPage from './components/authors/registerAuthorsPage.vue';
+import listAuthorsRegisteredPage from './components/authors/listAuthorsRegisteredPage.vue';
 
 const app = createApp({
     components: {
@@ -25,7 +26,7 @@ const app = createApp({
         registerBooksPage,
         listBooksRegisteredPage,
         registerAuthorsPage,
-
+        listAuthorsRegisteredPage,
     }
 });
 

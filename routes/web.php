@@ -29,5 +29,8 @@ Route::get('/cadastrar-autor', function () {
     return view('authors/registerAuthorsPage');
 });
 
+Route::get('/listar-autores', function () {
+    return view('authors/listAuthorsRegisteredPage');
+});
 
 
