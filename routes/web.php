@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AuthorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*Rotas da tela Home */
 Route::get('/', function () {
-    return view('homePage');
+    return HomeController::viewAuthorsBooks();
 });
 
+/*Rotas das telas de Livros*/
 Route::get('/cadastrar-livro', function () {
     return view('books/registerBooksPage');
 });
@@ -25,12 +29,9 @@ Route::get('/listar-livros', function () {
     return view('books/listBooksRegisteredPage');
 });
 
+/*Rotas das telas de Autores */
 Route::get('/cadastrar-autor', function () {
     return view('authors/registerAuthorsPage');
 });
 
-Route::get('/listar-autores', function () {
-    return view('authors/listAuthorsRegisteredPage');
-});
-
-
+Route::get('/listar-autores', [AuthorController::class, 'viewAuthors']);

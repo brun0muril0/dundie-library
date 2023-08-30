@@ -12,7 +12,7 @@
             <h2 class="text-slate-700 font-bold">{{ book.title }}</h2>
             <p class="mt-1 text-sm text-slate-400">{{ book.gender }}</p>
             <div class="mt-3 flex items-center justify-between">
-              <p class="text-sm font-semi-bold text-blue-500">{{ book.author }}</p>
+              <p class="text-sm font-semi-bold text-blue-500">{{ book.author.name }}</p>
               <div class="flex items-center space-x-1.5 rounded-lg bg-blue-500 text-white duration-100 hover:bg-blue-600">
                 <button class="text-sm  px-4 py-1.5" @click="openBookModal(book)">Saiba mais</button>
               </div>
@@ -55,9 +55,9 @@
                     <div class="mt-3 sm:mt-0 text-left">
                       <DialogTitle  class="text-base font-semibold leading-6 text-gray-900">{{ selectedItem.title }}</DialogTitle>
                       <div class="mt-2">
-                        <p class="text-sm text-gray-900"><span class="font-semibold">Autor(a):</span> {{ selectedItem.author }}</p>
+                        <p class="text-sm text-gray-900"><span class="font-semibold">Autor(a):</span> {{ selectedItem.author.name }}</p>
                         <p class="text-sm text-gray-900"><span class="font-semibold">Gênero:</span> {{ selectedItem.gender }}</p>
-                        <p class="text-sm text-gray-900"><span class="font-semibold">Publicação:</span> {{ selectedItem.publication }}</p>
+                        <p class="text-sm text-gray-900"><span class="font-semibold">Publicação:</span> {{ selectedItem.publication_year }}</p>
                         <p class="mt-2 text-sm text-gray-500 text-justify">{{ selectedItem.synopsis }}</p>
                       </div>
                     </div>
@@ -107,58 +107,63 @@
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue';
 
 export default {
+  props: [
+    "authors",
+    "books"
+  ],
+  
   data() {
     return {
-      books: [
-        {
-          title: 'Dom Quixot',
-          author: 'Carlos Barbosa',
-          gender: 'Drama', 
-          synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-          cover: 'images/capa_livro.jpg',
-          publication: '11/11/2011'
-        },
-        {
-          title: 'O Grande Gatsby',
-          author: 'Autor 2',
-          gender: 'Drama', 
-          synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-          cover: 'images/capa_livro.jpg',
-          publication: '11/11/2011'
-        },
-        {
-          title: 'Cem Anos de Solidão',
-          author: 'Autor 3',
-          gender: 'Drama', 
-          synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-          cover: 'images/capa_livro.jpg',
-          publication: '11/11/2011'
-        },
+      // books: [
+      //   {
+      //     title: 'Dom Quixot',
+      //     author: 'Carlos Barbosa',
+      //     gender: 'Drama', 
+      //     synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
+      //     cover: 'images/capa_livro.jpg',
+      //     publication_year: '11/11/2011'
+      //   },
+      //   {
+      //     title: 'O Grande Gatsby',
+      //     author: 'Autor 2',
+      //     gender: 'Drama', 
+      //     synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
+      //     cover: 'images/capa_livro.jpg',
+      //     publication_year: '11/11/2011'
+      //   },
+      //   {
+      //     title: 'Cem Anos de Solidão',
+      //     author: 'Autor 3',
+      //     gender: 'Drama', 
+      //     synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
+      //     cover: 'images/capa_livro.jpg',
+      //     publication_year: '11/11/2011'
+      //   },
         
-      ],
-      authors: [
-        {
-          name: 'William',
-          surname: 'Shakespeare ',
-          birthday: '12/11/1993', 
-          country: 'Brasil',
-          biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-        },
-        {
-          name: 'Charles',
-          surname: 'Dickens',
-          birthday: '12/11/1993', 
-          country: 'Brasil',
-          biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-        },
-        {
-          name: 'Machado',
-          surname: 'de Assis',
-          birthday: '12/11/1993', 
-          country: 'Brasil',
-          biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-        }, 
-      ],
+      // ],
+      // authors: [
+      //   {
+      //     name: 'William',
+      //     surname: 'Shakespeare ',
+      //     birthday: '12/11/1993', 
+      //     country: 'Brasil',
+      //     biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
+      //   },
+      //   {
+      //     name: 'Charles',
+      //     surname: 'Dickens',
+      //     birthday: '12/11/1993', 
+      //     country: 'Brasil',
+      //     biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
+      //   },
+      //   {
+      //     name: 'Machado',
+      //     surname: 'de Assis',
+      //     birthday: '12/11/1993', 
+      //     country: 'Brasil',
+      //     biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
+      //   }, 
+      // ],
       selectedItem: null,
       bookModal: false,
       authorModal: false,

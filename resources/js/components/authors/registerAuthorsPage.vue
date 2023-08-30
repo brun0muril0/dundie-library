@@ -1,7 +1,7 @@
 <template>
     <div class="py-10 mx-auto max-w-6xl px-6 flex flex-col items-center">
         <h1 class="text-2xl font-bold lg:text-4xl pb-10">Cadastrar autor(a)</h1>
-        <form class="bg-white p-6 rounded-md w-screen max-w-xs sm:max-w-md md:max-w-2xl">
+        <form @submit.prevent="createAuthor" class="bg-white p-6 rounded-md w-screen max-w-xs sm:max-w-md md:max-w-2xl">
           <div class="space-y-12">
             <div class="border-b border-gray-900/10 pb-12">
               <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -54,7 +54,7 @@
       
           <div class="mt-6 flex items-center justify-end gap-x-6">
             <button type="button" class="text-sm font-semibold leading-6 text-gray-900" @click="clearForm">Cancel</button>
-            <button type="submit" class="rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg-blue-500">Save</button>
+            <button type="submit" class="rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg-blue-500">Cadastrar</button>
           </div>
         </form>
     </div>
@@ -62,6 +62,7 @@
   
 <script>
 import { PhotoIcon, UserCircleIcon } from '@heroicons/vue/24/solid';
+import axios from 'axios';
 
 export default {
   data(){
@@ -90,7 +91,18 @@ export default {
         country: '',
         biography: ''
       };
+    },
+
+    createAuthor() {
+      axios.post('/api/author', this.form)
+        .then(function (response){
+          this.clearForm();
+        })
+        .catch(function (error) {
+          
+        });
     }
-  }
+  },
+
 }
 </script>
