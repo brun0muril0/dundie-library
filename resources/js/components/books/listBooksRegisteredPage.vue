@@ -1,6 +1,6 @@
 <template>
     <div class="py-10 px-6 mx-auto max-w-6xl">
-        <h1 class="text-2xl font-bold lg:text-4xl">Confira a nossa coleção de livros!</h1>
+        <h1 class="text-2xl font-bold lg:text-4xl">Confira nossa lista completa de livros!</h1>
         <p class="mt-1 text-sm text-slate-400">Na lista abaixo poderá ser visualizada as informações do livro, edita-lo ou exclui-lo</p>
         <div class="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             <article v-for="(book, index) in books" :key="index" class="rounded-xl bg-white p-3 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300 ">
@@ -93,9 +93,9 @@
                     <DialogPanel class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                         <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                             <div class="sm:flex sm:items-start">
-                                <div class="mt-3 w-full text-center sm:mx-4 sm:mt-0 sm:text-left">
-                                    <DialogTitle as="h3" class="text-lg font-semibold leading-6 text-gray-900">Editar informações</DialogTitle>
-                                    <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 pt-4">
+                                <div class="mt-3 w-full sm:mx-4 sm:mt-0 text-left">
+                                    <DialogTitle class="text-lg font-semibold leading-6 text-gray-900">Editar informações</DialogTitle>
+                                    <div class="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-12 pt-4">
                                         <div class="sm:col-span-full">
                                             <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Título</label>
                                             <div class="mt-2">
