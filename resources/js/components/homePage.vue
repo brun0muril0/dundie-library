@@ -1,5 +1,5 @@
 <template>
-  <div class="py-10 mx-auto max-w-6xl">
+  <div class="py-10 px-6 mx-auto max-w-6xl">
     <!-- Coleção de livros -->
     <h1 class="text-2xl font-bold lg:text-4xl">Confira a nossa coleção de livros!</h1>
     <div class="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
