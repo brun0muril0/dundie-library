@@ -12,6 +12,7 @@ import homePage from './components/homePage.vue';
 
 /* Importação de componentes da tela de livros*/
 import registerBooksPage from './components/books/registerBooksPage.vue';
+import listBooksRegisteredPage from './components/books/listBooksRegisteredPage.vue';
 
 /* Importação de componentes da tela de atores*/
 import registerAuthorsPage from './components/authors/registerAuthorsPage.vue';
@@ -22,6 +23,7 @@ const app = createApp({
         footerComp,
         homePage,
         registerBooksPage,
+        listBooksRegisteredPage,
         registerAuthorsPage,
 
     }

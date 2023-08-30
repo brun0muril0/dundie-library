@@ -146,12 +146,12 @@ import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/vue/20/so
 
 const livros = [
   { name: 'Cadastrar livro', description: 'Cadastre um novo livro', href: '/cadastrar-livro', icon: ChartPieIcon },
-  { name: 'Listar livros', description: 'Veja a lista de livros cadastrados', href: 'listar-livros', icon: CursorArrowRaysIcon },
+  { name: 'Listar livros', description: 'Veja a lista de livros cadastrados', href: '/listar-livros', icon: CursorArrowRaysIcon },
 ];
 
 const autores = [
   { name: 'Cadastrar autor(a)', description: 'Cadastre um(a) novo autor(a)', href: '/cadastrar-autor', icon: ChartPieIcon },
-  { name: 'Listar autores', description: 'Veja a lista de autores cadastrados', href: 'listar-autores', icon: CursorArrowRaysIcon },
+  { name: 'Listar autores', description: 'Veja a lista de autores cadastrados', href: '/listar-autores', icon: CursorArrowRaysIcon },
 ];
 
 const mobileMenuOpen = ref(false)

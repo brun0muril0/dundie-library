@@ -105,7 +105,6 @@
 <script>
 
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue';
-import { ExclamationTriangleIcon } from '@heroicons/vue/24/outline';
 
 export default {
   data() {

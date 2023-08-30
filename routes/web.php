@@ -21,6 +21,10 @@ Route::get('/cadastrar-livro', function () {
     return view('books/registerBooksPage');
 });
 
+Route::get('/listar-livros', function () {
+    return view('books/listBooksRegisteredPage');
+});
+
 Route::get('/cadastrar-autor', function () {
     return view('authors/registerAuthorsPage');
 });
