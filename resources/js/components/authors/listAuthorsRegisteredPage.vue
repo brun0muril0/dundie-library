@@ -97,7 +97,7 @@
                                                 <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Nome</label>
                                                 <div class="mt-2">
                                                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
-                                                        <input v-model="selectedItem.name" type="text" name="name" id="name" autocomplete="name" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Insira o título do livro" />
+                                                        <input v-model="selectedItem.name" type="text" name="name" id="name" autocomplete="name" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Insira o título do livro" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -106,7 +106,7 @@
                                                 <label for="surname" class="block text-sm font-medium leading-6 text-gray-900">Sobrenome</label>
                                                 <div class="mt-2">
                                                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
-                                                        <input v-model="selectedItem.surname" type="text" name="surname" id="surname" autocomplete="surname" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Insira o título do livro" />
+                                                        <input v-model="selectedItem.surname" type="text" name="surname" id="surname" autocomplete="surname" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Insira o título do livro" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -115,7 +115,7 @@
                                                 <label for="birthday" class="block text-sm font-medium leading-6 text-gray-900">Ano de nascimento</label>
                                                 <div class="mt-2">
                                                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
-                                                        <input v-model="selectedItem.birthday" type="date" name="birthday" id="birthday" autocomplete="birthday" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"/>
+                                                        <input v-model="selectedItem.birthday" type="date" name="birthday" id="birthday" autocomplete="birthday" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -124,7 +124,7 @@
                                                 <label for="country" class="block text-sm font-medium leading-6 text-gray-900">País de nascimento</label>
                                                 <div class="mt-2">
                                                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
-                                                        <input v-model="selectedItem.country" type="text" name="country" id="country" autocomplete="country" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Insira o gênero do livro" />
+                                                        <input v-model="selectedItem.country" type="text" name="country" id="country" autocomplete="country" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Insira o gênero do livro" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -132,7 +132,7 @@
                                             <div class="col-span-full">
                                                 <label for="biography" class="block text-sm font-medium leading-6 text-gray-900">Sinopse</label>
                                                 <div class="mt-2">
-                                                    <textarea v-model="selectedItem.biography" id="biography" name="biography" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-bg-blue-500 sm:text-sm sm:leading-6 pl-1" placeholder="Insira a sinopse do livro" />
+                                                    <textarea v-model="selectedItem.biography" id="biography" name="biography" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-bg-blue-500 sm:text-sm sm:leading-6 pl-1" placeholder="Insira a sinopse do livro" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -157,6 +157,7 @@
 
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue';
 import axios from 'axios';
+import { useToast } from "vue-toastification";
 
 export default {
     props: [
@@ -203,10 +204,17 @@ export default {
 
             try {
                 await axios.put(`/api/author/${authorId}`, this.selectedItem);
+                this.toast.success('Autor(a) atualizado com sucesso!', {
+                    timeout: 3000
+                });
                 this.editModal = false;
 
             } catch (error) {
+                this.toast.error('Erro ao atualizar autor(a)!',{
+                    timeout:3000
+                });
                 console.error('Erro ao atualizar o autor:', error);
+
             }
                 
         },
@@ -217,13 +225,29 @@ export default {
 
             try {
                 await axios.delete(`/api/author/${authorId}`);
-                window.location.reload();
-                
+                this.toast.success('Autor(a) excluído com sucesso!',{
+                    timeout: 3000
+                });
+
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
+
             } catch (error) {
+                this.toast.error('Erro ao excluir autor(a)!',{
+                    timeout:3000
+                });
                 console.error('Erro ao excluir o autor:', error);
+
             }
             
         }
-    }
+    },
+
+    setup() {
+      const toast = useToast();
+
+      return { toast }
+    },
 }
 </script>
