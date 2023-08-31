@@ -2,6 +2,8 @@ import './bootstrap';
 import '../css/app.css';
 
 import { createApp } from 'vue';
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
 /* Importação de componentes padrão*/
 import headerComp from './components/headerComp.vue';
@@ -30,4 +32,5 @@ const app = createApp({
     }
 });
 
+app.use(Toast);
 app.mount("#app");

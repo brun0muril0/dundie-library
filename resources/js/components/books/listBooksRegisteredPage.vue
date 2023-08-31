@@ -100,7 +100,7 @@
                                             <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Título</label>
                                             <div class="mt-2">
                                                 <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
-                                                    <input v-model="selectedItem.title" type="text" name="title" id="title" autocomplete="title" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Insira o título do livro" />
+                                                    <input v-model="selectedItem.title" type="text" name="title" id="title" autocomplete="title" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Insira o título do livro" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -108,7 +108,7 @@
                                         <div class="sm:col-span-full">
                                             <label for="id_author" class="block text-sm font-medium leading-6 text-gray-900">Autor(a)</label>
                                             <div class="mt-2">
-                                                <select v-model="selectedItem.id_author" id="id_author" name="id_author" autocomplete="id_author" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-bg-blue-500 sm:max-w-xs sm:text-sm sm:leading-6">
+                                                <select v-model="selectedItem.id_author" id="id_author" name="id_author" autocomplete="id_author" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-bg-blue-500 sm:max-w-xs sm:text-sm sm:leading-6" required>
                                                     <option v-for="author in authors" :key="author.id_author" :value="author.id_author">{{ author.name }}</option>
                                                 </select>
                                             </div>
@@ -118,7 +118,7 @@
                                             <label for="gender" class="block text-sm font-medium leading-6 text-gray-900">Gênero</label>
                                             <div class="mt-2">
                                                 <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
-                                                <input v-model="selectedItem.gender" type="text" name="gender" id="gender" autocomplete="gender" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Insira o gênero do livro" />
+                                                <input v-model="selectedItem.gender" type="text" name="gender" id="gender" autocomplete="gender" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Insira o gênero do livro" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -127,7 +127,7 @@
                                         <div class="col-span-full">
                                             <label for="synopsis" class="block text-sm font-medium leading-6 text-gray-900">Sinopse</label>
                                             <div class="mt-2">
-                                                <textarea v-model="selectedItem.synopsis" id="synopsis" name="synopsis" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-bg-blue-500 sm:text-sm sm:leading-6 pl-1" placeholder="Insira a sinopse do livro" />
+                                                <textarea v-model="selectedItem.synopsis" id="synopsis" name="synopsis" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-bg-blue-500 sm:text-sm sm:leading-6 pl-1" placeholder="Insira a sinopse do livro" required/>
                                             </div>
                                         </div>
                             
@@ -135,7 +135,7 @@
                                             <label for="cover" class="block text-sm font-medium leading-6 text-gray-900">Link do armazenado da capa do livro</label>
                                             <div class="mt-2">
                                                 <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500">
-                                                <input v-model="selectedItem.cover" type="url" name="cover" id="cover" autocomplete="cover" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Insira o link da imagem" />
+                                                <input v-model="selectedItem.cover" type="url" name="cover" id="cover" autocomplete="cover" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Insira o link da imagem" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -144,7 +144,7 @@
                                             <label for="publication" class="block text-sm font-medium leading-6 text-gray-900">Ano de publicação</label>
                                             <div class="mt-2">
                                                 <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
-                                                <input v-model="selectedItem.publication" type="date" name="publication" id="publication" autocomplete="publication" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"/>
+                                                <input v-model="selectedItem.publication" type="date" name="publication" id="publication" autocomplete="publication" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -169,6 +169,7 @@
 
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue';
 import axios from 'axios';
+import { useToast } from "vue-toastification";
 
 export default {
     props: [
@@ -216,9 +217,18 @@ export default {
 
             try {
                 await axios.delete(`/api/book/${bookId}`);
-                window.location.reload();
+                this.toast.success('Livro excluído com sucesso!',{
+                    timeout: 3000
+                });
+
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
                 
             } catch (error) {
+                this.toast.error('Erro ao excluir livro!',{
+                    timeout:3000
+                });
                 console.error('Erro ao excluir o autor:', error);
             }
             
@@ -230,14 +240,25 @@ export default {
 
             try {
                 await axios.put(`/api/book/${bookId}`, this.selectedItem);
-                window.location.reload();
+                this.toast.success('Livro atualizado com sucesso!', {
+                    timeout: 3000
+                });
                 this.editModal = false;
 
             } catch (error) {
+                this.toast.error('Erro ao atualizar livro!',{
+                    timeout:3000
+                });
                 console.error('Erro ao atualizar o autor:', error);
             }
                 
         },
+    },
+
+    setup() {
+      const toast = useToast();
+
+      return { toast }
     },
 }
 </script>
