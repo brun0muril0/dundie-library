@@ -4,7 +4,6 @@
     <h1 class="text-2xl font-bold lg:text-4xl">Confira a nossa coleção de livros!</h1>
     <div class="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <article v-for="(book, index) in books" :key="index" class="rounded-xl bg-white p-3 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300 ">
-        <a href="#">
           <div class="relative flex items-center overflow-hidden rounded-xl">
             <img :src="book.cover" alt="Capa do livro" />
           </div>
@@ -16,7 +15,6 @@
               <button class="text-sm  px-2 py-1 space-x-1 sm:space-x-1.5 rounded-lg bg-blue-500 text-white duration-100 hover:bg-blue-600" @click="openBookModal(book)">Saiba mais</button>
             </div>
           </div>
-        </a>
       </article>
     </div>
 
@@ -24,7 +22,6 @@
     <h1 class="text-2xl font-bold lg:text-4xl">Confira nossos grandes autores literários!</h1>
     <div class="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <article v-for="(author, index) in authors" :key="index" class="rounded-xl bg-white p-3 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300 ">
-        <a href="#">
           <div class="mt-1 p-2">
             <h2 class="text-slate-700 font-bold">{{ author.name }} {{ author.surname }}</h2>
             <div class="mt-3 flex justify-between items-center gap-2">
@@ -32,7 +29,6 @@
               <button class="text-sm  px-3 py-1 space-x-1 sm:space-x-1.5 rounded-lg bg-blue-500 text-white duration-100 hover:bg-blue-600" @click="openAuthorModal(author)">Saiba mais</button>
             </div>
           </div>
-        </a>
       </article>
     </div>
 
