@@ -7,29 +7,17 @@ use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {   
-    public function viewAuthors() {
+    /* Função responsável por buscar todos os autores e retornar para diferentes views */
+    public static function viewAuthors($view) {
         try {
-            $authors = $this->index();
+            $authors = self::index();
             
-            return view('authors.listAuthorsRegisteredPage', [
+            return view($view, [
                 'authors' => $authors
             ]);
         } catch (\Exception $e) {
             $errorMessage = $e->getMessage();
 
-            return response("Erro: " . $errorMessage, 500);
-        }
-    }
-
-    public function authorsToCreateBook() {
-        try {
-            $authors = $this->index();
-            
-            return view('books.registerBooksPage', [
-                'authors' => $authors
-            ]);
-        } catch (\Exception $e) {
-            $errorMessage = $e->getMessage();
             return response("Erro: " . $errorMessage, 500);
         }
     }
@@ -37,7 +25,7 @@ class AuthorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public static function index()
     {
         try {
             $data = Author::orderBy('id_author')

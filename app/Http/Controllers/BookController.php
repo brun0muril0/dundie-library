@@ -4,16 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Http\Controllers\AuthorController;
 
 class BookController extends Controller
 {   
-    /* Função responsável por buscar todos os livros e retornar para view da lista de livros*/
+    /* Função responsável por buscar todos os livros e retornar para view da lista de livros.
+       Retorna também os autores para realizar a atualização do livro.
+    */
     public function viewBooks() {
         try {
             $books = $this->index();
 
+            $authors = AuthorController::index();
+
+            // dd($authors);
             return view('books.listBooksRegisteredPage',[
-                'books' => $books
+                'books' => $books,
+                'authors' => $authors
             ]);
         } catch (\Exception $e) {
             $errorMessage = $e->getMessage();
@@ -90,7 +97,24 @@ class BookController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $validateData = $request->validate([
+                'title' => 'string',
+                'id_author' => 'integer',
+                'gender' => 'string',
+                'synopsis' => 'string',
+                'cover' => 'string',
+                'publication_year' => 'integer'
+            ]);
+    
+            Book::where('id_book', $id)
+                  ->update($validateData);
+    
+            return response('Livro atualizado com sucesso!', 200);
+        } catch (\Exception $e) {
+            $errorMessage = $e->getMessage();
+            return response("Erro ao atualizar livro: " . $errorMessage, 500);
+        }
     }
 
     /**

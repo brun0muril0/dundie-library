@@ -15,9 +15,9 @@
                 </div>
 
                 <div class="col-span-full">
-                  <label for="author" class="block text-sm font-medium leading-6 text-gray-900">Autor(a)</label>
+                  <label for="id_author" class="block text-sm font-medium leading-6 text-gray-900">Autor(a)</label>
                   <div class="mt-2">
-                    <select v-model="form.author" id="author" name="author" autocomplete="author-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-bg-blue-500 sm:text-sm sm:leading-6">
+                    <select v-model="form.id_author" id="id_author" name="id_author" autocomplete="id_author" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-bg-blue-500 sm:text-sm sm:leading-6">
                       <option v-for="author in authors" :key="author.id_author" :value="author.id_author">{{ author.name }}</option>
                     </select>
                   </div>
@@ -50,10 +50,10 @@
                 </div>
 
                 <div class="sm:col-span-4">
-                  <label for="publication" class="block text-sm font-medium leading-6 text-gray-900">Ano de publicação</label>
+                  <label for="publication_year" class="block text-sm font-medium leading-6 text-gray-900">Ano de publicação</label>
                   <div class="mt-2">
                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
-                      <input v-model="form.publication" type="date" name="publication" id="publication" autocomplete="publication" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"/>
+                      <input v-model="form.publication_year" type="number" name="publication_year" id="publication_year" autocomplete="publication_year" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"/>
                     </div>
                   </div>
                 </div>
@@ -82,11 +82,11 @@ export default {
     return {
       form: {
         title: '',
-        author: '',
+        id_author: '',
         gender: '',
         synopsis: '',
         cover: '',
-        publication: ''
+        publication_year: ''
       }
     };
   },
@@ -100,11 +100,11 @@ export default {
     clearForm() {
       this.form = {
         title: '',
-        author: '',
+        id_author: '',
         gender: '',
         synopsis: '',
         cover: '',
-        publication: ''
+        publication_year: ''
       };
     },
 

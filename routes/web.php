@@ -20,11 +20,15 @@ use App\Http\Controllers\BookController;
 Route::get('/',[HomeController::class, 'viewAuthorsBooks']);
 
 /*Rotas das telas de Livros*/
-Route::get('/cadastrar-livro', [AuthorController::class, 'authorsToCreateBook']);
+Route::get('/cadastrar-livro', function () {
+    return AuthorController::viewAuthors('books.registerBooksPage');
+});
 Route::get('/listar-livros', [BookController::class, 'viewBooks']);
 
 /*Rotas das telas de Autores */
 Route::get('/cadastrar-autor', function () {
-    return view('authors/registerAuthorsPage');
+    return view('authors.registerAuthorsPage');
 });
-Route::get('/listar-autores', [AuthorController::class, 'viewAuthors']);
+Route::get('/listar-autores', function () {
+    return AuthorController::viewAuthors('authors.listAuthorsRegisteredPage');
+});

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {   
+    /*Função responsável por buscar livros, autores e retornar para view da home.*/
     public function viewAuthorsBooks() {
         try {
             $authorController = new AuthorController;
