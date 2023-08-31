@@ -22,8 +22,8 @@
           </PopoverButton>
 
           <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0 translate-y-1" enter-to-class="opacity-100 translate-y-0" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-1">
-            <PopoverPanel class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-              <div class="p-4">
+            <PopoverPanel class="absolute -left-96 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+              <div>
                 <div v-for="item in livros" :key="item.name" class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
                   <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                     <component :is="item.icon" class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
@@ -48,8 +48,8 @@
           </PopoverButton>
 
           <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0 translate-y-1" enter-to-class="opacity-100 translate-y-0" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100 translate-y-0" leave-to-class="opacity-0 translate-y-1">
-            <PopoverPanel class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-              <div class="p-4">
+            <PopoverPanel class="absolute -left-96 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+              <div>
                 <div v-for="item in autores" :key="item.name" class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
                   <div class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                     <component :is="item.icon" class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
@@ -132,26 +132,30 @@ import {
   PopoverButton,
   PopoverGroup,
   PopoverPanel,
-} from '@headlessui/vue'
+} from '@headlessui/vue';
+
 import {
-  ArrowPathIcon,
   Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
   XMarkIcon,
-} from '@heroicons/vue/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/vue/20/solid'
+  PlusIcon,
+  BookOpenIcon,
+  PencilSquareIcon
+} from '@heroicons/vue/24/outline';
+
+import { 
+  ChevronDownIcon, 
+  PhoneIcon, 
+  PlayCircleIcon 
+} from '@heroicons/vue/20/solid';
 
 const livros = [
-  { name: 'Cadastrar livro', description: 'Cadastre um novo livro', href: '/cadastrar-livro', icon: ChartPieIcon },
-  { name: 'Listar livros', description: 'Veja a lista de livros cadastrados', href: 'listar-livros', icon: CursorArrowRaysIcon },
+  { name: 'Cadastrar livro', description: 'Cadastre um novo livro', href: '/cadastrar-livro', icon: PlusIcon },
+  { name: 'Listar livros', description: 'Veja a lista de livros cadastrados', href: '/listar-livros', icon: BookOpenIcon },
 ];
 
 const autores = [
-  { name: 'Cadastrar autor(a)', description: 'Cadastre um(a) novo autor(a)', href: '/cadastrar-autor', icon: ChartPieIcon },
-  { name: 'Listar autores', description: 'Veja a lista de autores cadastrados', href: 'listar-autores', icon: CursorArrowRaysIcon },
+  { name: 'Cadastrar autor(a)', description: 'Cadastre um(a) novo autor(a)', href: '/cadastrar-autor', icon: PlusIcon },
+  { name: 'Listar autores', description: 'Veja a lista de autores cadastrados', href: '/listar-autores', icon: PencilSquareIcon },
 ];
 
 const mobileMenuOpen = ref(false)

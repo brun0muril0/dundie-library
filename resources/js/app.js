@@ -2,6 +2,8 @@ import './bootstrap';
 import '../css/app.css';
 
 import { createApp } from 'vue';
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
 /* Importação de componentes padrão*/
 import headerComp from './components/headerComp.vue';
@@ -12,9 +14,11 @@ import homePage from './components/homePage.vue';
 
 /* Importação de componentes da tela de livros*/
 import registerBooksPage from './components/books/registerBooksPage.vue';
+import listBooksRegisteredPage from './components/books/listBooksRegisteredPage.vue';
 
 /* Importação de componentes da tela de atores*/
 import registerAuthorsPage from './components/authors/registerAuthorsPage.vue';
+import listAuthorsRegisteredPage from './components/authors/listAuthorsRegisteredPage.vue';
 
 const app = createApp({
     components: {
@@ -22,9 +26,11 @@ const app = createApp({
         footerComp,
         homePage,
         registerBooksPage,
+        listBooksRegisteredPage,
         registerAuthorsPage,
-
+        listAuthorsRegisteredPage,
     }
 });
 
+app.use(Toast);
 app.mount("#app");

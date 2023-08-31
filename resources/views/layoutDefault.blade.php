@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Dundie Library</title>
+    <link rel="icon" type="image/x-icon" href="/images/dundie_library_logo.png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
