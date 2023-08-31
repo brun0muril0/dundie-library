@@ -33,9 +33,9 @@
                             <div class="mt-3 sm:mt-0 text-left">
                             <DialogTitle  class="text-base font-semibold leading-6 text-gray-900">{{ selectedItem.title }}</DialogTitle>
                             <div class="mt-2">
-                                <p class="text-sm text-gray-900"><span class="font-semibold">Autor(a):</span> {{ selectedItem.author }}</p>
+                                <p class="text-sm text-gray-900"><span class="font-semibold">Autor(a):</span> {{ selectedItem.author.name }} {{ selectedItem.author.surname }}</p>
                                 <p class="text-sm text-gray-900"><span class="font-semibold">Gênero:</span> {{ selectedItem.gender }}</p>
-                                <p class="text-sm text-gray-900"><span class="font-semibold">Publicação:</span> {{ selectedItem.publication }}</p>
+                                <p class="text-sm text-gray-900"><span class="font-semibold">Publicação:</span> {{ selectedItem.publication_year }}</p>
                                 <p class="mt-2 text-sm text-gray-500 text-justify">{{ selectedItem.synopsis }}</p>
                             </div>
                             </div>
