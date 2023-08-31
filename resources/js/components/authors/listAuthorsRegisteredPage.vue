@@ -2,14 +2,14 @@
     <div class="py-10 px-6 mx-auto max-w-6xl">
         <h1 class="text-2xl font-bold lg:text-4xl">Confira nossos grandes autores literários!</h1>
         <p class="mt-1 text-sm text-slate-400">Na lista abaixo poderá ser visualizada as informações dos autores, edita-los ou exclui-los</p>
-        <div class="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        <article v-for="(author, index) in authors" :key="index" class="rounded-xl bg-white p-3 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300 ">
-            <div class="mt-1 p-2">
-                <h2 class="text-slate-700 font-bold" @click="openAuthorModal(author)">{{ author.name }} {{ author.surname }}</h2>
+        <div class="grid grid-cols-2 gap-6 p-2 sm:p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center">
+        <article v-for="(author, index) in authors" :key="index" class="rounded-xl bg-white w-40 sm:w-52 p-3 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300 ">
+            <div class="mt-1 p-2 ">
+                <h2 class="text-sm sm:text-slate-700 font-bold" @click="openAuthorModal(author)">{{ author.name }} {{ author.surname }}</h2>
                 <p class="mt-1 text-sm text-slate-400">{{ author.country }}</p>
                 <div class="flex justify-between mt-3">
-                        <button class="text-sm px-4 py-1.5 bg-white space-x-1.5 rounded-lg text-blue-500 border-solid border border-blue-500  duration-100" @click="openDeleteModal(author)">Excluir</button>
-                        <button class="text-sm px-4 py-1.5 bg-blue-500 space-x-1.5 rounded-lg text-white duration-100 hover:bg-blue-600" @click="openEditModal(author)">Editar</button>
+                        <button class="text-sm px-2 sm:px-4 py-1.5 bg-white space-x-1 sm:space-x-1.5 rounded-lg text-blue-500 border-solid border border-blue-500  duration-100" @click="openDeleteModal(author)">Excluir</button>
+                        <button class="text-sm px-2 sm:px-4 py-1.5 bg-blue-500 space-x-1 sm:space-x-1.5 rounded-lg text-white duration-100 hover:bg-blue-600" @click="openEditModal(author)">Editar</button>
                     </div>
                 </div>
         </article>

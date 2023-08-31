@@ -5,7 +5,7 @@
           <div class="space-y-12">
             <div class="border-b border-gray-900/10 pb-12">
               <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div class="sm:col-span-4">
+                <div class="sm:col-span-3">
                   <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Nome</label>
                   <div class="mt-2">
                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
@@ -14,7 +14,7 @@
                   </div>
                 </div>
 
-                <div class="sm:col-span-4">
+                <div class="sm:col-span-3">
                   <label for="surname" class="block text-sm font-medium leading-6 text-gray-900">Sobrenome</label>
                   <div class="mt-2">
                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
@@ -23,7 +23,7 @@
                   </div>
                 </div>
 
-                <div class="sm:col-span-4">
+                <div class="sm:col-span-3">
                   <label for="birthday" class="block text-sm font-medium leading-6 text-gray-900">Ano de nascimento</label>
                   <div class="mt-2">
                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
@@ -32,7 +32,7 @@
                   </div>
                 </div>
                 
-                <div class="sm:col-span-4">
+                <div class="sm:col-span-3">
                   <label for="country" class="block text-sm font-medium leading-6 text-gray-900">País de nascimento</label>
                   <div class="mt-2">
                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
