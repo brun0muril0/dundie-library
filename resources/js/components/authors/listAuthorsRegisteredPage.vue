@@ -7,9 +7,9 @@
             <div class="mt-1 p-2 ">
                 <h2 class="text-sm sm:text-slate-700 font-bold" @click="openAuthorModal(author)">{{ author.name }} {{ author.surname }}</h2>
                 <p class="mt-1 text-sm text-slate-400">{{ author.country }}</p>
-                <div class="flex justify-between mt-3">
-                        <button class="text-sm px-2 sm:px-4 py-1.5 bg-white space-x-1 sm:space-x-1.5 rounded-lg text-blue-500 border-solid border border-blue-500  duration-100" @click="openDeleteModal(author)">Excluir</button>
-                        <button class="text-sm px-2 sm:px-4 py-1.5 bg-blue-500 space-x-1 sm:space-x-1.5 rounded-lg text-white duration-100 hover:bg-blue-600" @click="openEditModal(author)">Editar</button>
+                <div class="flex justify-between mt-3 sm:gap-2">
+                        <button class="text-sm px-2 sm:px-3 py-1 bg-white space-x-1 sm:space-x-1.5 rounded-lg text-blue-500 border-solid border border-blue-500 duration-100" @click="openDeleteModal(author)">Excluir</button>
+                        <button class="text-sm px-2 sm:px-3 py-1 space-x-1 sm:space-x-1.5 rounded-lg bg-blue-500 text-white duration-100 hover:bg-blue-600 duration-100" @click="openEditModal(author)">Editar</button>
                     </div>
                 </div>
         </article>

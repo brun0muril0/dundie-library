@@ -11,11 +11,9 @@
           <div class="mt-1 p-2">
             <h2 class="text-slate-700 font-bold">{{ book.title }}</h2>
             <p class="mt-1 text-sm text-slate-400">{{ book.gender }}</p>
-            <div class="mt-3 flex items-center justify-between">
+            <div class="mt-3 flex justify-between items-center">
               <p class="text-sm font-semi-bold text-blue-500">{{ book.author.name }}</p>
-              <div class="flex items-center space-x-1.5 rounded-lg bg-blue-500 text-white duration-100 hover:bg-blue-600">
-                <button class="text-sm  px-4 py-1.5" @click="openBookModal(book)">Saiba mais</button>
-              </div>
+              <button class="text-sm  px-2 py-1 space-x-1 sm:space-x-1.5 rounded-lg bg-blue-500 text-white duration-100 hover:bg-blue-600" @click="openBookModal(book)">Saiba mais</button>
             </div>
           </div>
         </a>
@@ -29,11 +27,9 @@
         <a href="#">
           <div class="mt-1 p-2">
             <h2 class="text-slate-700 font-bold">{{ author.name }} {{ author.surname }}</h2>
-            <div class="mt-3 flex items-center justify-between">
-              <p class="mt-1 text-sm text-slate-400">{{ author.country }}</p>
-              <div class="flex items-center space-x-1.5 rounded-lg bg-blue-500 text-white duration-100 hover:bg-blue-600">
-                  <button class="text-sm px-4 py-1.5" @click="openAuthorModal(author)">Saiba mais</button>
-                </div>
+            <div class="mt-3 flex justify-between items-center gap-2">
+              <p class="text-sm font-semi-bold text-blue-500">{{ author.country }}</p>
+              <button class="text-sm  px-3 py-1 space-x-1 sm:space-x-1.5 rounded-lg bg-blue-500 text-white duration-100 hover:bg-blue-600" @click="openAuthorModal(author)">Saiba mais</button>
             </div>
           </div>
         </a>
