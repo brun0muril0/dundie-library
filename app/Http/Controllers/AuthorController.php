@@ -8,19 +8,30 @@ use Illuminate\Http\Request;
 class AuthorController extends Controller
 {   
     public function viewAuthors() {
-        $authors = $this->index();
+        try {
+            $authors = $this->index();
+            
+            return view('authors.listAuthorsRegisteredPage', [
+                'authors' => $authors
+            ]);
+        } catch (\Exception $e) {
+            $errorMessage = $e->getMessage();
 
-        return view('authors.listAuthorsRegisteredPage',[
-            'authors' => $authors
-        ]);
+            return response("Erro: " . $errorMessage, 500);
+        }
     }
 
     public function authorsToCreateBook() {
-        $authors = $this->index();
-        
-        return view('books.registerBooksPage',[
-            'authors' => $authors
-        ]);
+        try {
+            $authors = $this->index();
+            
+            return view('books.registerBooksPage', [
+                'authors' => $authors
+            ]);
+        } catch (\Exception $e) {
+            $errorMessage = $e->getMessage();
+            return response("Erro: " . $errorMessage, 500);
+        }
     }
 
     /**
@@ -28,9 +39,14 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $data = Author::orderBy('id_author')->get();
-
-        return $data;
+        try {
+            $data = Author::orderBy('id_author')
+                          ->get();
+            return $data;
+        } catch (\Exception $e) {
+            $errorMessage = $e->getMessage();
+            return response("Erro: " . $errorMessage, 500);
+        }
     }
 
     /**
@@ -46,17 +62,22 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-            'name' => 'string',
-            'surname' => 'string',
-            'birthday' => 'date',
-            'country' => 'string',
-            'biography' => 'string'
-        ]);
-
-        Author::create($validateData);
-
-        return response('Autor cadastrado com sucesso!', 200);
+        try {
+            $validateData = $request->validate([
+                'name' => 'string',
+                'surname' => 'string',
+                'birthday' => 'date',
+                'country' => 'string',
+                'biography' => 'string'
+            ]);
+    
+            Author::create($validateData);
+    
+            return response('Autor cadastrado com sucesso!', 200);
+        } catch (\Exception $e) {
+            $errorMessage = $e->getMessage();
+            return response("Erro ao cadastrar autor: " . $errorMessage, 500);
+        }
     }
 
     /**
@@ -80,18 +101,23 @@ class AuthorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validateData = $request->validate([
-            'name' => 'string',
-            'surname' => 'string',
-            'birthday' => 'date',
-            'country' => 'string',
-            'biography' => 'string'
-        ]);
-
-        Author::where('id_author', $id)
-              ->update($validateData);
-
-        return response('Autor atualizado com sucesso!', 200);
+        try {
+            $validateData = $request->validate([
+                'name' => 'string',
+                'surname' => 'string',
+                'birthday' => 'date',
+                'country' => 'string',
+                'biography' => 'string'
+            ]);
+    
+            Author::where('id_author', $id)
+                  ->update($validateData);
+    
+            return response('Autor atualizado com sucesso!', 200);
+        } catch (\Exception $e) {
+            $errorMessage = $e->getMessage();
+            return response("Erro ao atualizar autor: " . $errorMessage, 500);
+        }
     }
 
     /**
@@ -99,9 +125,14 @@ class AuthorController extends Controller
      */
     public function destroy(string $id)
     {
-        Author::where('id_author', $id)
-              ->delete();
-
-        return response('Autor excluído com sucesso!', 200);
+        try {
+            Author::where('id_author', $id)
+                  ->delete();
+    
+            return response('Autor excluído com sucesso!', 200);
+        } catch (\Exception $e) {
+            $errorMessage = $e->getMessage();
+            return response("Erro ao excluir autor: " . $errorMessage, 500);
+        }
     }
 }

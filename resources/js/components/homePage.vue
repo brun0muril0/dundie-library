@@ -114,56 +114,6 @@ export default {
   
   data() {
     return {
-      // books: [
-      //   {
-      //     title: 'Dom Quixot',
-      //     author: 'Carlos Barbosa',
-      //     gender: 'Drama', 
-      //     synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-      //     cover: 'images/capa_livro.jpg',
-      //     publication_year: '11/11/2011'
-      //   },
-      //   {
-      //     title: 'O Grande Gatsby',
-      //     author: 'Autor 2',
-      //     gender: 'Drama', 
-      //     synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-      //     cover: 'images/capa_livro.jpg',
-      //     publication_year: '11/11/2011'
-      //   },
-      //   {
-      //     title: 'Cem Anos de Solidão',
-      //     author: 'Autor 3',
-      //     gender: 'Drama', 
-      //     synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-      //     cover: 'images/capa_livro.jpg',
-      //     publication_year: '11/11/2011'
-      //   },
-        
-      // ],
-      // authors: [
-      //   {
-      //     name: 'William',
-      //     surname: 'Shakespeare ',
-      //     birthday: '12/11/1993', 
-      //     country: 'Brasil',
-      //     biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-      //   },
-      //   {
-      //     name: 'Charles',
-      //     surname: 'Dickens',
-      //     birthday: '12/11/1993', 
-      //     country: 'Brasil',
-      //     biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-      //   },
-      //   {
-      //     name: 'Machado',
-      //     surname: 'de Assis',
-      //     birthday: '12/11/1993', 
-      //     country: 'Brasil',
-      //     biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-      //   }, 
-      // ],
       selectedItem: null,
       bookModal: false,
       authorModal: false,

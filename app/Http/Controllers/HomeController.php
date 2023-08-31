@@ -9,17 +9,21 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {   
     public function viewAuthorsBooks() {
-
-        $authorController = new AuthorController;
-        $authors = $authorController->index();
-        
-        $bookController = new BookController;
-        $books = $bookController->index();
-
-        return view('homePage',[
-            'authors' => $authors,
-            'books' => $books
-        ]);
+        try {
+            $authorController = new AuthorController;
+            $authors = $authorController->index();
+            
+            $bookController = new BookController;
+            $books = $bookController->index();
+    
+            return view('homePage', [
+                'authors' => $authors,
+                'books' => $books
+            ]);
+        } catch (\Exception $e) {
+            $errorMessage = $e->getMessage();
+            return response("Erro: " . $errorMessage, 500);
+        }
     }
 
     /**
