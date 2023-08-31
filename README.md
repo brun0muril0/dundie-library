@@ -1,4 +1,4 @@
-# Configurar e executar o proeto
+# Configurar e executar o projeto
 
 Este é um guia passo a passo para configurar e executar este projeto. Siga as instruções abaixo para preparar o ambiente e iniciar a aplicação.
 
