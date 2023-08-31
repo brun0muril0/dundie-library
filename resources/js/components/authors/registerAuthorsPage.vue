@@ -1,11 +1,11 @@
 <template>
     <div class="py-10 mx-auto max-w-6xl px-6 flex flex-col items-center">
         <h1 class="text-2xl font-bold lg:text-4xl pb-10">Cadastrar autor(a)</h1>
-        <form class="bg-white p-6 rounded-md w-screen max-w-xs sm:max-w-md md:max-w-2xl">
+        <form @submit.prevent="createAuthor" class="bg-white p-6 rounded-md w-screen max-w-xs sm:max-w-md md:max-w-2xl">
           <div class="space-y-12">
             <div class="border-b border-gray-900/10 pb-12">
               <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div class="sm:col-span-4">
+                <div class="sm:col-span-3">
                   <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Nome</label>
                   <div class="mt-2">
                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
@@ -14,7 +14,7 @@
                   </div>
                 </div>
 
-                <div class="sm:col-span-4">
+                <div class="sm:col-span-3">
                   <label for="surname" class="block text-sm font-medium leading-6 text-gray-900">Sobrenome</label>
                   <div class="mt-2">
                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
@@ -23,7 +23,7 @@
                   </div>
                 </div>
 
-                <div class="sm:col-span-4">
+                <div class="sm:col-span-3">
                   <label for="birthday" class="block text-sm font-medium leading-6 text-gray-900">Ano de nascimento</label>
                   <div class="mt-2">
                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
@@ -32,7 +32,7 @@
                   </div>
                 </div>
                 
-                <div class="sm:col-span-4">
+                <div class="sm:col-span-3">
                   <label for="country" class="block text-sm font-medium leading-6 text-gray-900">País de nascimento</label>
                   <div class="mt-2">
                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
@@ -53,8 +53,8 @@
           </div>
       
           <div class="mt-6 flex items-center justify-end gap-x-6">
-            <button type="button" class="text-sm font-semibold leading-6 text-gray-900" @click="clearForm">Cancel</button>
-            <button type="submit" class="rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg-blue-500">Save</button>
+            <button type="cancel" class="text-sm font-semibold leading-6 text-gray-900" @click="clearForm">Cancel</button>
+            <button type="submit" class="rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg-blue-500">Cadastrar</button>
           </div>
         </form>
     </div>
@@ -62,6 +62,7 @@
   
 <script>
 import { PhotoIcon, UserCircleIcon } from '@heroicons/vue/24/solid';
+import axios from 'axios';
 
 export default {
   data(){
@@ -90,7 +91,22 @@ export default {
         country: '',
         biography: ''
       };
+    },
+
+    async createAuthor() {
+      const authorData = this.form;
+
+      try {
+        await axios.post('/api/author', authorData);
+        this.clearForm();
+        window.location.reload();
+        
+      } catch (error) {
+        console.error('Erro ao excluir o autor:', error);
+      }
+
     }
-  }
+  },
+
 }
 </script>

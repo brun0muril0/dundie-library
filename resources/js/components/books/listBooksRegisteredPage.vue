@@ -11,7 +11,7 @@
                     <h2 class="text-slate-700 font-bold">{{ book.title }}</h2>
                     <p class="mt-1 text-sm text-slate-400">{{ book.gender }}</p>
                     <div class="flex justify-between mt-3">
-                        <button class="text-sm px-4 py-1.5 bg-white space-x-1.5 rounded-lg text-blue-500 border-solid border border-blue-500  duration-100" @click="openDeleteModal">Excluir</button>
+                        <button class="text-sm px-4 py-1.5 bg-white space-x-1.5 rounded-lg text-blue-500 border-solid border border-blue-500  duration-100" @click="openDeleteModal(book)">Excluir</button>
                         <button class="text-sm px-4 py-1.5 bg-blue-500 space-x-1.5 rounded-lg text-white duration-100 hover:bg-blue-600" @click="openEditModal(book)">Editar</button>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                            <button type="button" class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Excluir</button>
+                            <button type="button" class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto" @click="deleteBook">Excluir</button>
                             <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto" @click="deleteModal = false">Cancelar</button>
                         </div>
                         </DialogPanel>
@@ -106,64 +106,54 @@
                                         </div>
 
                                         <div class="sm:col-span-full">
-                                            <label for="author" class="block text-sm font-medium leading-6 text-gray-900">Autor(a)</label>
+                                            <label for="id_author" class="block text-sm font-medium leading-6 text-gray-900">Autor(a)</label>
                                             <div class="mt-2">
-                                                <select v-model="selectedItem.author" id="author" name="author" autocomplete="author-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-bg-blue-500 sm:max-w-xs sm:text-sm sm:leading-6">
-                                                <option>Autor 1</option>
-                                                <option>Autor 2</option>
-                                                <option>Autor 3</option>
+                                                <select v-model="selectedItem.id_author" id="id_author" name="id_author" autocomplete="id_author" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-bg-blue-500 sm:max-w-xs sm:text-sm sm:leading-6">
+                                                    <option v-for="author in authors" :key="author.id_author" :value="author.id_author">{{ author.name }}</option>
                                                 </select>
                                             </div>
                                         </div>
                                         
                                         <div class="sm:col-span-full">
-                                        <label for="gender" class="block text-sm font-medium leading-6 text-gray-900">Gênero</label>
-                                        <div class="mt-2">
-                                            <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
-                                            <input v-model="selectedItem.gender" type="text" name="gender" id="gender" autocomplete="gender" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Insira o gênero do livro" />
+                                            <label for="gender" class="block text-sm font-medium leading-6 text-gray-900">Gênero</label>
+                                            <div class="mt-2">
+                                                <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
+                                                <input v-model="selectedItem.gender" type="text" name="gender" id="gender" autocomplete="gender" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Insira o gênero do livro" />
+                                                </div>
                                             </div>
-                                        </div>
                                         </div>
 
 
                                         <div class="col-span-full">
-                                        <label for="synopsis" class="block text-sm font-medium leading-6 text-gray-900">Sinopse</label>
-                                        <div class="mt-2">
-                                            <textarea v-model="selectedItem.synopsis" id="synopsis" name="synopsis" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-bg-blue-500 sm:text-sm sm:leading-6 pl-1" placeholder="Insira a sinopse do livro" />
-                                        </div>
+                                            <label for="synopsis" class="block text-sm font-medium leading-6 text-gray-900">Sinopse</label>
+                                            <div class="mt-2">
+                                                <textarea v-model="selectedItem.synopsis" id="synopsis" name="synopsis" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-bg-blue-500 sm:text-sm sm:leading-6 pl-1" placeholder="Insira a sinopse do livro" />
+                                            </div>
                                         </div>
                             
                                         <div class="col-span-full">
-                                        <label for="capa-livro" class="block text-sm font-medium leading-6 text-gray-900">Capa do livro</label>
-                                        <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                                            <div class="text-center">
-                                            <PhotoIcon class="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
-                                            <div class="mt-4 flex text-sm leading-6 text-gray-600">
-                                                <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-bg-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-bg-blue-500 focus-within:ring-offset-2 hover:text-bg-blue-600">
-                                                <span>Escolher arquivo</span>
-                                                <input id="file-upload" name="file-upload" type="file" class="sr-only" />
-                                                </label>
-                                                <p class="pl-1">ou arraste e solte aqui</p>
+                                            <label for="cover" class="block text-sm font-medium leading-6 text-gray-900">Link do armazenado da capa do livro</label>
+                                            <div class="mt-2">
+                                                <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500">
+                                                <input v-model="selectedItem.cover" type="url" name="cover" id="cover" autocomplete="cover" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Insira o link da imagem" />
+                                                </div>
                                             </div>
-                                            <p class="text-xs leading-5 text-gray-600">PNG, JPG, JPEG abaixo de 10MB</p>
-                                            </div>
-                                        </div>
                                         </div>
 
                                         <div class="sm:col-span-4">
-                                        <label for="publication" class="block text-sm font-medium leading-6 text-gray-900">Ano de publicação</label>
-                                        <div class="mt-2">
-                                            <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
-                                            <input v-model="selectedItem.publication" type="date" name="publication" id="publication" autocomplete="publication" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"/>
+                                            <label for="publication" class="block text-sm font-medium leading-6 text-gray-900">Ano de publicação</label>
+                                            <div class="mt-2">
+                                                <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-bg-blue-500 sm:max-w-md">
+                                                <input v-model="selectedItem.publication" type="date" name="publication" id="publication" autocomplete="publication" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"/>
+                                                </div>
                                             </div>
-                                        </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                            <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:hover:bg-blue-600 sm:ml-3 sm:w-auto">Salvar</button>
+                            <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:hover:bg-blue-600 sm:ml-3 sm:w-auto" @click="updateBook">Salvar</button>
                             <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto" @click="editModal = false">cancelar</button>
                         </div>
                     </DialogPanel>
@@ -178,64 +168,76 @@
 <script>
 
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue';
+import axios from 'axios';
 
 export default {
-  data() {
-    return {
-      books: [
-        {
-          title: 'Dom Quixot',
-          author: 'Carlos Barbosa',
-          gender: 'Drama', 
-          synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-          cover: 'images/capa_livro.jpg',
-          publication: '11/11/2011'
-        },
-        {
-          title: 'O Grande Gatsby',
-          author: 'Autor 2',
-          gender: 'Drama', 
-          synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-          cover: 'images/capa_livro.jpg',
-          publication: '11/11/2011'
-        },
-        {
-          title: 'Cem Anos de Solidão',
-          author: 'Autor 3',
-          gender: 'Drama', 
-          synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-          cover: 'images/capa_livro.jpg',
-          publication: '11/11/2011'
-        },
-        
-      ],
-      selectedItem: null,
-      bookModal: false,
-      deleteModal: false,
-      editModal: false,
-    };
-  },
+    props: [
+        "books",
+        "authors"
+    ],
 
-  components: {
-    Dialog,
-    DialogPanel,
-    TransitionRoot,
-  },
-
-  methods: {
-    openBookModal(book) {
-      this.selectedItem = book;
-      this.bookModal = true;
+    data() {
+        return {
+            selectedItem: null,
+            bookModal: false,
+            deleteModal: false,
+            editModal: false,
+        };
     },
 
-    openDeleteModal() {
-      this.deleteModal = true;
+    components: {
+        Dialog,
+        DialogPanel,
+        TransitionRoot,
     },
 
-    openEditModal(book) {
-      this.selectedItem = book;
-      this.editModal = true;
+    methods: {
+        // método responsável por abrir o modal de informações do livro
+        openBookModal(book) {
+            this.selectedItem = book;
+            this.bookModal = true;
+        },
+
+        // método responsável por abrir o modal de exclusão do livro
+        openDeleteModal(book) {
+            this.selectedItem = book;
+            this.deleteModal = true;
+        },
+
+        // método responsável por abrir o modal de edição do livro
+        openEditModal(book) {
+            this.selectedItem = book;
+            this.editModal = true;
+        },
+
+        // método responsável por excluir um livro
+        async deleteBook() {
+            const bookId = this.selectedItem.id_book;
+
+            try {
+                await axios.delete(`/api/book/${bookId}`);
+                window.location.reload();
+                
+            } catch (error) {
+                console.error('Erro ao excluir o autor:', error);
+            }
+            
+        },
+
+        // método responsável por atualizar um livro
+        async updateBook() {
+            const bookId = this.selectedItem.id_book;
+
+            try {
+                await axios.put(`/api/book/${bookId}`, this.selectedItem);
+                window.location.reload();
+                this.editModal = false;
+
+            } catch (error) {
+                console.error('Erro ao atualizar o autor:', error);
+            }
+                
+        },
     },
-  }
 }
 </script>

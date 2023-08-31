@@ -5,5 +5,8 @@
 @endsection
 
 @section('content')
-<list-books-registered-page></list-books-registered-page>
+<list-books-registered-page
+    :books="{{ $books }}"
+    :authors="{{ $authors }}">
+</list-books-registered-page>
 @endsection
