@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
+use App\Utils\ApiLogger;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -22,8 +23,14 @@ class HomeController extends Controller
                 'books' => $books
             ]);
         } catch (\Exception $e) {
-            $errorMessage = $e->getMessage();
-            return response("Erro: " . $errorMessage, 500);
+
+            ApiLogger::exception(
+                'HomeController',
+                'viewAuthorsBooks',
+                $e
+            );
+
+            return response("Erro: " . $e, 500);
         }
     }
 

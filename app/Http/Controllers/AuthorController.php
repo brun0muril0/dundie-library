@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Utils\ApiLogger;
 use Illuminate\Http\Request;
 
 class AuthorController extends Controller
@@ -16,9 +17,14 @@ class AuthorController extends Controller
                 'authors' => $authors
             ]);
         } catch (\Exception $e) {
-            $errorMessage = $e->getMessage();
 
-            return response("Erro: " . $errorMessage, 500);
+            ApiLogger::exception(
+                'AuthorController',
+                'viewAuthors',
+                $e
+            );
+
+            return response("Erro: " . $e, 500);
         }
     }
 
@@ -32,8 +38,14 @@ class AuthorController extends Controller
                           ->get();
             return $data;
         } catch (\Exception $e) {
-            $errorMessage = $e->getMessage();
-            return response("Erro: " . $errorMessage, 500);
+
+            ApiLogger::exception(
+                'AuthorController',
+                'index',
+                $e
+            );
+
+            return response("Erro: " . $e, 500);
         }
     }
 
@@ -58,13 +70,19 @@ class AuthorController extends Controller
                 'country' => 'string',
                 'biography' => 'string'
             ]);
-    
+            
             Author::create($validateData);
     
             return response('Autor cadastrado com sucesso!', 200);
         } catch (\Exception $e) {
-            $errorMessage = $e->getMessage();
-            return response("Erro ao cadastrar autor: " . $errorMessage, 500);
+
+            ApiLogger::exception(
+                'AuthorController',
+                'store',
+                $e
+            );
+
+            return response("Erro ao cadastrar autor: " . $e, 500);
         }
     }
 
@@ -103,8 +121,14 @@ class AuthorController extends Controller
     
             return response('Autor atualizado com sucesso!', 200);
         } catch (\Exception $e) {
-            $errorMessage = $e->getMessage();
-            return response("Erro ao atualizar autor: " . $errorMessage, 500);
+
+            ApiLogger::exception(
+                'AuthorController',
+                'update',
+                $e
+            );
+            
+            return response("Erro ao atualizar autor: " . $e, 500);
         }
     }
 
@@ -119,8 +143,14 @@ class AuthorController extends Controller
     
             return response('Autor excluído com sucesso!', 200);
         } catch (\Exception $e) {
-            $errorMessage = $e->getMessage();
-            return response("Erro ao excluir autor: " . $errorMessage, 500);
+
+            ApiLogger::exception(
+                'AuthorController',
+                'index',
+                $e
+            );
+
+            return response("Erro ao excluir autor: " . $e, 500);
         }
     }
 }

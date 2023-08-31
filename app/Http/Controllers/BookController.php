@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Http\Controllers\AuthorController;
+use App\Utils\ApiLogger;
 
 class BookController extends Controller
 {   
@@ -23,8 +24,14 @@ class BookController extends Controller
                 'authors' => $authors
             ]);
         } catch (\Exception $e) {
-            $errorMessage = $e->getMessage();
-            return response("Erro: " . $errorMessage, 500);
+
+            ApiLogger::exception(
+                'BookController',
+                'viewBooks',
+                $e
+            );
+
+            return response("Erro: " . $e, 500);
         }
     }
 
@@ -39,8 +46,14 @@ class BookController extends Controller
     
             return $data;
         } catch (\Exception $e) {
-            $errorMessage = $e->getMessage();
-            return response("Erro ao obter lista de livros: " . $errorMessage, 500);
+
+            ApiLogger::exception(
+                'BookController',
+                'index',
+                $e
+            );
+
+            return response("Erro ao obter lista de livros: " . $e, 500);
         }
     }
 
@@ -71,8 +84,14 @@ class BookController extends Controller
     
             return response('Livro cadastrado com sucesso!', 200);
         } catch (\Exception $e) {
-            $errorMessage = $e->getMessage();
-            return response("Erro ao cadastrar o livro: " . $errorMessage, 500);
+
+            ApiLogger::exception(
+                'BookController',
+                'store',
+                $e
+            );
+
+            return response("Erro ao cadastrar o livro: " . $e, 500);
         }
     }
 
@@ -112,8 +131,14 @@ class BookController extends Controller
     
             return response('Livro atualizado com sucesso!', 200);
         } catch (\Exception $e) {
-            $errorMessage = $e->getMessage();
-            return response("Erro ao atualizar livro: " . $errorMessage, 500);
+
+            ApiLogger::exception(
+                'BookController',
+                'update',
+                $e
+            );
+
+            return response("Erro ao atualizar livro: " . $e, 500);
         }
     }
 
@@ -128,8 +153,14 @@ class BookController extends Controller
     
             return response('Livro excluído com sucesso!', 200);
         } catch (\Exception $e) {
-            $errorMessage = $e->getMessage();
-            return response("Erro ao excluir o livro: " . $errorMessage, 500);
+
+            ApiLogger::exception(
+                'BookController',
+                'destroy',
+                $e
+            );
+
+            return response("Erro ao excluir o livro: " . $e, 500);
         }
     }
 }
