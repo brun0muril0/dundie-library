@@ -20,6 +20,7 @@ class Author extends Model
         'biography'
     ];
 
+    /* Função responsável por fazer o relacionamento onde o autor tenha vários livros */
     public function books () {
         return $this->hasMany(Book::class, 'id_author', 'id_author');
     }

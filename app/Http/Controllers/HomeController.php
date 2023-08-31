@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {   
-    public static function viewAuthorsBooks() {
+    public function viewAuthorsBooks() {
 
         $authorController = new AuthorController;
         $authors = $authorController->index();

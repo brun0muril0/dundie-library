@@ -21,6 +21,7 @@ class Book extends Model
         'publication_year'
     ];
 
+    /* Função responsável por fazer o relacionamento onde o livro só tenha um autor */
     public function author () {
         return $this->belongsTo(Author::class, 'id_author', 'id_author');
     }

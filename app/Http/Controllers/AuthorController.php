@@ -15,6 +15,14 @@ class AuthorController extends Controller
         ]);
     }
 
+    public function authorsToCreateBook() {
+        $authors = $this->index();
+        
+        return view('books.registerBooksPage',[
+            'authors' => $authors
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      */

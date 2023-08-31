@@ -165,10 +165,10 @@ export default {
 
     data() {
         return {
-        selectedItem: null,
-        authorModal: false,
-        deleteModal: false,
-        editModal: false,
+            selectedItem: null,
+            authorModal: false,
+            deleteModal: false,
+            editModal: false,
         };
     },
 

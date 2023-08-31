@@ -11,7 +11,7 @@
                     <h2 class="text-slate-700 font-bold">{{ book.title }}</h2>
                     <p class="mt-1 text-sm text-slate-400">{{ book.gender }}</p>
                     <div class="flex justify-between mt-3">
-                        <button class="text-sm px-4 py-1.5 bg-white space-x-1.5 rounded-lg text-blue-500 border-solid border border-blue-500  duration-100" @click="openDeleteModal">Excluir</button>
+                        <button class="text-sm px-4 py-1.5 bg-white space-x-1.5 rounded-lg text-blue-500 border-solid border border-blue-500  duration-100" @click="openDeleteModal(book)">Excluir</button>
                         <button class="text-sm px-4 py-1.5 bg-blue-500 space-x-1.5 rounded-lg text-white duration-100 hover:bg-blue-600" @click="openEditModal(book)">Editar</button>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                            <button type="button" class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Excluir</button>
+                            <button type="button" class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto" @click="deleteBook">Excluir</button>
                             <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto" @click="deleteModal = false">Cancelar</button>
                         </div>
                         </DialogPanel>
@@ -163,7 +163,7 @@
                             </div>
                         </div>
                         <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                            <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:hover:bg-blue-600 sm:ml-3 sm:w-auto">Salvar</button>
+                            <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:hover:bg-blue-600 sm:ml-3 sm:w-auto" @click="updateBook">Salvar</button>
                             <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto" @click="editModal = false">cancelar</button>
                         </div>
                     </DialogPanel>
@@ -178,64 +178,74 @@
 <script>
 
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue';
+import axios from 'axios';
 
 export default {
-  data() {
-    return {
-      books: [
-        {
-          title: 'Dom Quixot',
-          author: 'Carlos Barbosa',
-          gender: 'Drama', 
-          synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-          cover: 'images/capa_livro.jpg',
-          publication: '11/11/2011'
-        },
-        {
-          title: 'O Grande Gatsby',
-          author: 'Autor 2',
-          gender: 'Drama', 
-          synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-          cover: 'images/capa_livro.jpg',
-          publication: '11/11/2011'
-        },
-        {
-          title: 'Cem Anos de Solidão',
-          author: 'Autor 3',
-          gender: 'Drama', 
-          synopsis: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
-          cover: 'images/capa_livro.jpg',
-          publication: '11/11/2011'
-        },
-        
-      ],
-      selectedItem: null,
-      bookModal: false,
-      deleteModal: false,
-      editModal: false,
-    };
-  },
+    props: [
+        "books",
+    ],
 
-  components: {
-    Dialog,
-    DialogPanel,
-    TransitionRoot,
-  },
-
-  methods: {
-    openBookModal(book) {
-      this.selectedItem = book;
-      this.bookModal = true;
+    data() {
+        return {
+            selectedItem: null,
+            bookModal: false,
+            deleteModal: false,
+            editModal: false,
+        };
     },
 
-    openDeleteModal() {
-      this.deleteModal = true;
+    components: {
+        Dialog,
+        DialogPanel,
+        TransitionRoot,
     },
 
-    openEditModal(book) {
-      this.selectedItem = book;
-      this.editModal = true;
-    },
-  }
+    methods: {
+        // método responsável por abrir o modal de informações do livro
+        openBookModal(book) {
+            this.selectedItem = book;
+            this.bookModal = true;
+        },
+
+        // método responsável por abrir o modal de exclusão do livro
+        openDeleteModal(book) {
+            this.selectedItem = book;
+            this.deleteModal = true;
+        },
+
+        // método responsável por abrir o modal de edição do livro
+        openEditModal(book) {
+            this.selectedItem = book;
+            this.editModal = true;
+        },
+
+        // método responsável por excluir um livro
+        async deleteBook() {
+            const bookId = this.selectedItem.id_book;
+
+            try {
+                await axios.delete(`/api/book/${bookId}`);
+                window.location.reload();
+                
+            } catch (error) {
+                console.error('Erro ao excluir o autor:', error);
+            }
+            
+        },
+
+        // método responsável por atualizar um livro
+        async updateBook() {
+            const authorId = this.selectedItem.id_author;
+
+            try {
+                await axios.put(`/api/author/${authorId}`, this.selectedItem);
+                this.editModal = false;
+
+            } catch (error) {
+                console.error('Erro ao atualizar o autor:', error);
+            }
+                
+        },
+    }
 }
 </script>

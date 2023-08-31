@@ -53,7 +53,7 @@
           </div>
       
           <div class="mt-6 flex items-center justify-end gap-x-6">
-            <button type="button" class="text-sm font-semibold leading-6 text-gray-900" @click="clearForm">Cancel</button>
+            <button type="cancel" class="text-sm font-semibold leading-6 text-gray-900" @click="clearForm">Cancel</button>
             <button type="submit" class="rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bg-blue-500">Cadastrar</button>
           </div>
         </form>
@@ -93,14 +93,18 @@ export default {
       };
     },
 
-    createAuthor() {
-      axios.post('/api/author', this.form)
-        .then(function (response){
-          this.clearForm();
-        })
-        .catch(function (error) {
-          
-        });
+    async createAuthor() {
+      const authorData = this.form;
+
+      try {
+        await axios.post('/api/author', authorData);
+        this.clearForm();
+        window.location.reload();
+        
+      } catch (error) {
+        console.error('Erro ao excluir o autor:', error);
+      }
+
     }
   },
 
