@@ -10,9 +10,9 @@
                 <div class="mt-1 p-2">
                     <h2 class="text-slate-700 font-bold">{{ book.title }}</h2>
                     <p class="mt-1 text-sm text-slate-400">{{ book.gender }}</p>
-                    <div class="flex justify-between mt-3">
-                        <button class="text-sm px-4 py-1.5 bg-white space-x-1.5 rounded-lg text-blue-500 border-solid border border-blue-500  duration-100" @click="openDeleteModal(book)">Excluir</button>
-                        <button class="text-sm px-4 py-1.5 bg-blue-500 space-x-1.5 rounded-lg text-white duration-100 hover:bg-blue-600" @click="openEditModal(book)">Editar</button>
+                    <div class="flex justify-between mt-3 gap-2">
+                        <button class="text-sm px-3 py-1 bg-white space-x-1 sm:space-x-1.5 rounded-lg text-blue-500 border-solid border border-blue-500 duration-100" @click="openDeleteModal(book)">Excluir</button>
+                        <button class="text-sm  px-3 py-1 space-x-1 sm:space-x-1.5 rounded-lg bg-blue-500 text-white duration-100 hover:bg-blue-600" @click="openEditModal(book)">Editar</button>
                     </div>
                 </div>
             </article>

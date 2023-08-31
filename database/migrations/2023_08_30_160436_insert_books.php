@@ -15,15 +15,15 @@ return new class extends Migration
         DB::table('books')->insert([
             [
                 'title' => 'Titulo 1',
-                'id_author' => 4,
+                'id_author' => DB::table('authors')->select('id_author')->where('name', 'Thomas')->pluck('id_author')[0],
                 'gender' => 'Ação',
                 'synopsis' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
                 'cover' => 'https://html.com/wp-content/uploads/flamingo.jpg',
                 'publication_year' => 1995,
             ],
             [
-                'title' => 'Tituo 2',
-                'id_author' => 5,
+                'title' => 'Titulo 2',
+                'id_author' => DB::table('authors')->select('id_author')->where('name', 'Marcos')->pluck('id_author')[0],
                 'gender' => 'Comédia',
                 'synopsis' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
                 'cover' => 'https://html.com/wp-content/uploads/flamingo.jpg',
@@ -31,7 +31,7 @@ return new class extends Migration
             ],
             [
                 'title' => 'Titulo 3',
-                'id_author' => 6,
+                'id_author' => DB::table('authors')->select('id_author')->where('name', 'Dom')->pluck('id_author')[0],
                 'gender' => 'Drama',
                 'synopsis' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tristique eu dui at molestie. Integer diam justo, viverra vitae lectus in, venenatis tristique sapien. Curabitur lobortis dolor tellus, eget vulputate.',
                 'cover' => 'https://html.com/wp-content/uploads/flamingo.jpg',

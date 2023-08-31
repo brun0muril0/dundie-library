@@ -24,5 +24,5 @@ class ApiLogger
 
     public static function debug(string $class, string $method, string $message)
     {
-        Log::debu('[' . $class . '][' . $method . '][' . $message . ']');    }
+        Log::debug('[' . $class . '][' . $method . '][' . $message . ']');    }
 }
